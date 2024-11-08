@@ -56,8 +56,8 @@ function Content() {
                         {arrayPurchase.map((item, index) => {
                             return (
                                 <div key={`${item}_${index}`} className='content_panel_purchase'>
-                                    <p>{item.product}</p>
-                                    <p>{item.price} RUB</p>
+                                    <p className='content_panel_purchase_text'>{item.product}</p>
+                                    <p className='content_panel_purchase_text'>{item.price} RUB</p>
                                     <Button
                                         text='X'
                                         width='75px'
@@ -70,7 +70,7 @@ function Content() {
                     </div>
                 </div>
                 <div className='content_totalSum'>
-                    <p>Сумма: {totalSum.result}</p>
+                    <p className='content_totalSum_text'>Сумма: {totalSum.result}</p>
                 </div>
             </div>
         </div>
