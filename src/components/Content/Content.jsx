@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Content.css';
 import Button from '../UI/Button/Button'
 
@@ -6,16 +6,17 @@ function Content() {
     const inputProductRef = useRef(null)
     const inputPriceRef = useRef(null)
     const [arrayPurchase, setArrayPurchase] = useState([])
+    const [totalSum, setTotalSum] = useState({ result: 0 })
 
     const addPurchase = () => {
         const copyState = [...arrayPurchase]
         const purchase = {
             product: '',
-            price: ''
+            price: 0
         }
         if (isNaN(inputProductRef.current.value) && inputPriceRef.current.value > 0) {
             purchase.product = inputProductRef.current.value
-            purchase.price = inputPriceRef.current.value
+            purchase.price = Number(inputPriceRef.current.value)
             copyState.push(purchase)
             setArrayPurchase(copyState)
             return
@@ -28,6 +29,13 @@ function Content() {
         copyState.splice(index, 1)
         setArrayPurchase(copyState)
     }
+
+    useEffect(() => {
+        const copyState = { ...totalSum }
+        copyState.result = 0
+        arrayPurchase.reduce((sum, current) => copyState.result += current.price, 0)
+        setTotalSum(copyState)
+    }, [arrayPurchase])
 
     return (
         <div className='content'>
@@ -47,7 +55,7 @@ function Content() {
                     <div className='content_panel'>
                         {arrayPurchase.map((item, index) => {
                             return (
-                                <div className='content_panel_purchase'>
+                                <div key={`${item}_${index}`} className='content_panel_purchase'>
                                     <p>{item.product}</p>
                                     <p>{item.price} RUB</p>
                                     <Button
@@ -60,6 +68,9 @@ function Content() {
                             )
                         })}
                     </div>
+                </div>
+                <div className='content_totalSum'>
+                    <p>Сумма: {totalSum.result}</p>
                 </div>
             </div>
         </div>
