@@ -1,0 +1,38 @@
+.content{
+    margin-top: 30px;
+    display: flex;
+}
+.content_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content_menu{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.content_menu_input{
+    width: 250px;
+    height: 30px;
+    padding: 5px 10px;
+}
+.content_menu_currency{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.content_panel{
+    margin-top: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    width: 1000px;
+    min-height: 70vh;
+    border-radius: 5px;
+    padding: 20px;
+}
+.content_panel_purchase{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
