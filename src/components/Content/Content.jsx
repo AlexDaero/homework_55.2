@@ -32,8 +32,8 @@ function Content() {
 
     useEffect(() => {
         const copyState = { ...totalSum }
-        copyState.result = 0
-        arrayPurchase.reduce((sum, current) => copyState.result += current.price, 0)
+        const sum = arrayPurchase.reduce((sum, current) => sum + current.price, 0)
+        copyState.result = sum
         setTotalSum(copyState)
     }, [arrayPurchase])
 
